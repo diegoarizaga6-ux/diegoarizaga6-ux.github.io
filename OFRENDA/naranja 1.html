@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Frutas</title>
+</head>
+<body>
+   
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+ 
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script src="js/VerveShadow.js"></script>  
+<script type="importmap">
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js"
+        }
+}
+</script>
+<script type="module">
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three';
+    import {OrbitControls} from 'three/OrbitControls';
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js" 
+    console.log(OrbitControls);
+
+
+
+ 
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xF5F5DC);
+ 
+ 
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+ 
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+ 
+    //Settings de la cámara
+    camera.position.set(20, 20, 60);
+ 
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    //Naranja
+var geometry06 = new THREE.SphereGeometry(4, 64, 64);
+var material06 = new THREE.MeshBasicMaterial({
+    color: 0xFF9D00
+});
+var mesh06 = new THREE.Mesh(geometry06, material06);
+mesh06.position.set(0, 8.5, 0);
+scene.add(mesh06);
+mesh06.castShadow = true;
+
+
+//Tallo
+var geometry07 = new THREE.CylinderGeometry(0.25, 0.35, 1.8, 16, 1);
+var material07 = new THREE.MeshBasicMaterial({
+    color: 0x4B3B05
+});
+var mesh07 = new THREE.Mesh(geometry07, material07);
+mesh07.position.set(0, 13.2, 0);
+scene.add(mesh07);
+mesh07.castShadow = true;
+
+//Hoja
+var geometry08 = new THREE.CylinderGeometry(1, 0.2, 1, 8, 0.5);
+var material08 = new THREE.MeshBasicMaterial({
+    color: 0x228B22
+});
+var mesh08 = new THREE.Mesh(geometry08, material08);
+mesh08.position.set(1, 13, 0);
+mesh08.rotation.set(0.3, 0.5, 0);
+scene.add(mesh08);
+mesh08.castShadow = true;
+{
+
+ //🪄🪄 Animación -
+ 
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+ 
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+}
+</script>
+</body>
+</html>

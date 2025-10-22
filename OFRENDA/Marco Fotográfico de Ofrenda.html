@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>MARCO</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+
+<canvas id="myCanvas"></canvas>
+
+<script src="./font/01.js"></script>  
+<script src="./font/02.js"></script>  
+<script src="./font/03.js"></script> 
+<script type="importmap">
+{
+  "imports": {
+    "three": "./js/three.module.js",
+    "three/OrbitControls": "./js/OrbitControls.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/OrbitControls';
+
+var renderer = new THREE.WebGLRenderer({
+  canvas: document.getElementById('myCanvas'), antialias: true
+});
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x1a0b0b);
+renderer.shadowMap.enabled = true;
+
+var scene = new THREE.Scene();
+
+var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 2000);
+camera.position.set(0, 5, 35);
+scene.add(camera);
+
+var controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+var ambient = new THREE.AmbientLight(0xFFFFFF, 0.4);
+scene.add(ambient);
+
+var light = new THREE.PointLight(0xFFD580, 1.3, 100);
+light.position.set(0, 10, 20);
+scene.add(light);
+
+var FOTO = new THREE.Group();
+scene.add(FOTO);
+
+var baseGeo = new THREE.BoxGeometry(30, 1, 20);
+var baseMat = new THREE.MeshLambertMaterial({ color: 0x5C4033 });
+var base = new THREE.Mesh(baseGeo, baseMat);
+base.position.set(0, -3, 0);
+base.receiveShadow = true;
+FOTO.add(base);
+
+var marcoExterior = new THREE.BoxGeometry(16, 20, 1);
+var marcoInterior = new THREE.BoxGeometry(12, 16, 1);
+var marcoMat = new THREE.MeshLambertMaterial({ color: 0xD4AF37 });
+
+var marco = new THREE.Mesh(marcoExterior, marcoMat);
+marco.position.set(0, 7, 0);
+FOTO.add(marco);
+
+var huecoMat = new THREE.MeshLambertMaterial({ color: 0x222222 });
+var hueco = new THREE.Mesh(marcoInterior, huecoMat);
+hueco.position.set(0, 7, 0.51);
+FOTO.add(hueco);
+
+var fotoGeo = new THREE.PlaneGeometry(10.5, 14.5);
+var fotoMat = new THREE.MeshLambertMaterial({ color: 0xB5651D });
+var foto = new THREE.Mesh(fotoGeo, fotoMat);
+foto.position.set(0, 7, 0.6);
+FOTO.add(foto);
+
+function crearFlor(x, y, z) {
+  var grupoFlor = new THREE.Group();
+
+  var matPetalo = new THREE.MeshLambertMaterial({ color: 0xFF8C00 });
+  var matCentro = new THREE.MeshLambertMaterial({ color: 0xFFD54F });
+
+  var geoPetalo = new THREE.SphereGeometry(0.7, 16, 16);
+  var geoCentro = new THREE.SphereGeometry(0.5, 16, 16);
+
+  var petalo1 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo1.position.set(1, 0, 0);
+  grupoFlor.add(petalo1);
+
+  var petalo2 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo2.position.set(Math.cos(Math.PI / 4), Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo2);
+
+  var petalo3 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo3.position.set(0, 1, 0);
+  grupoFlor.add(petalo3);
+
+  var petalo4 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo4.position.set(-Math.cos(Math.PI / 4), Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo4);
+
+  var petalo5 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo5.position.set(-1, 0, 0);
+  grupoFlor.add(petalo5);
+
+  var petalo6 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo6.position.set(-Math.cos(Math.PI / 4), -Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo6);
+
+  var petalo7 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo7.position.set(0, -1, 0);
+  grupoFlor.add(petalo7);
+
+  var petalo8 = new THREE.Mesh(geoPetalo, matPetalo);
+  petalo8.position.set(Math.cos(Math.PI / 4), -Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo8);
+
+  var centro = new THREE.Mesh(geoCentro, matCentro);
+  grupoFlor.add(centro);
+
+  grupoFlor.position.set(x, y, z);
+  FOTO.add(grupoFlor);
+}
+
+// Cuatro flores en las esquinas del marco
+crearFlor(-8, 16, 1);  // arriba izquierda
+crearFlor(8, 16, 1);   // arriba derecha
+crearFlor(-8, -1, 1);  // abajo izquierda
+crearFlor(8, -1, 1);   // abajo derecha
+
+var fondoGeo = new THREE.PlaneGeometry(1000, 1000);
+var fondoMat = new THREE.MeshLambertMaterial({ color: 0x0A0A0A, side: THREE.DoubleSide });
+var fondo = new THREE.Mesh(fondoGeo, fondoMat);
+fondo.position.set(0, 20, -10);
+FOTO.add(fondo);
+
+function render() {
+  controls.update();
+  marco.rotation.y = Math.sin(Date.now() * 0.0008) * 0.0;
+  foto.rotation.y = marco.rotation.y;
+  renderer.render(scene, camera);
+  requestAnimationFrame(render);
+}
+render();
+</script>
+</body>
+</html>

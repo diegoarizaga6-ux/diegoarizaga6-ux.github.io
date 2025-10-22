@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Atole</title>
+</head>
+<body>
+   
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+ 
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+
+<script type="importmap">
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js"
+        }
+}
+</script>
+<script type="module">
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three';
+    import {OrbitControls} from 'three/OrbitControls';
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js" 
+    console.log(OrbitControls);
+
+
+    import{TextGeometry} from "./js/TextGeometry.js";
+    import{FontLoader} from "./js/FontLoader.js"; 
+
+ 
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x8A217C);
+ 
+ 
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+ 
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+ 
+    //Settings de la cámara
+    camera.position.set(0, 4, 80);
+ 
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+ 
+        var gridHelper = new THREE.GridHelper (50,50,205,1);
+        scene.add (gridHelper);
+
+//  comienza codigo Espacio para colocar los objetos
+   
+    //3d box base
+var geometry1 = new THREE.BoxGeometry(100,0.5,100);
+    var material01 = new THREE.MeshBasicMaterial({
+        color: 0xD96A1A
+    });  
+    var mesh01 = new THREE.Mesh(geometry1, material01);
+    mesh01.position.set(0, 0, 0);
+    scene.add(mesh01);
+  mesh01.receiveShadow= true;
+
+  // 🔑 activar sombras
+   // var scene = new THREE.Scene();
+
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000);
+    scene.add(camera);
+    camera.position.set(0, 4, 10);
+
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    // suelo
+    var geometry09 = new THREE.PlaneGeometry (80,80,80,80);
+    var material09 = new THREE.MeshLambertMaterial({color:0x684EDE, side: THREE.DoubleSide});
+    var mesh09 = new THREE.Mesh(geometry09,material09);
+    scene.add(mesh09);
+    mesh09.rotation.set(1.5708,0,0);
+    mesh09.position.y = 0;
+    mesh09.receiveShadow = true;
+
+  ///creacion de objetos
+
+ //Atole
+var geometry06 = new RoundedBoxGeometry(5,5,5,8,200);
+    var material06 = new THREE.MeshBasicMaterial({
+        color: 0xA64B21
+    });
+    var mesh06 = new THREE.Mesh(geometry06, material06);
+    scene.add(mesh06);
+    mesh06.position.set(4,4,4);
+    mesh06.rotation.set(0,0,0);
+    mesh06.castShadow = true;
+
+// boca
+var geometry06 = new THREE.CylinderGeometry(2,1,3.6,30);
+    var material06 = new THREE.MeshBasicMaterial({
+        color: 0x5E2B14
+    });
+    var mesh06 = new THREE.Mesh(geometry06, material06);
+    scene.add(mesh06);
+    mesh06.position.set(4,5,4);
+    mesh06.rotation.set(0,0,0);
+    mesh06.castShadow = true;
+
+//atole
+
+var geometry06 = new THREE.CylinderGeometry(1.6,.6,3.6,30);
+    var material06 = new THREE.MeshBasicMaterial({
+        color: 0xD6AC67
+    });
+    var mesh06 = new THREE.Mesh(geometry06, material06);
+    scene.add(mesh06);
+    mesh06.position.set(4,5.1,4);
+    mesh06.rotation.set(0,0,0);
+    mesh06.castShadow = true;
+
+// Oreja arriba
+
+var geometry06 = new RoundedBoxGeometry(1,3.7,1,8,5);
+    var material06 = new THREE.MeshBasicMaterial({
+        color: 0x5E2B14
+    });
+    var mesh06 = new THREE.Mesh(geometry06, material06);
+    scene.add(mesh06);
+    mesh06.position.set(4,5,6);
+    mesh06.rotation.set(11,0,0);
+    mesh06.castShadow = true;
+    
+//oreja media
+
+var geometry06 = new RoundedBoxGeometry(1,2.7,1,8,5);
+    var material06 = new THREE.MeshBasicMaterial({
+        color: 0x5E2B14
+    });
+    var mesh06 = new THREE.Mesh(geometry06, material06);
+    scene.add(mesh06);
+    mesh06.position.set(4,4,7.4);
+    mesh06.rotation.set(0,0,0);
+    mesh06.castShadow = true;
+
+// oreja baja
+
+var geometry06 = new RoundedBoxGeometry(1,3.7,1,8,5);
+    var material06 = new THREE.MeshBasicMaterial({
+        color: 0x5E2B14
+    });
+    var mesh06 = new THREE.Mesh(geometry06, material06);
+    scene.add(mesh06);
+    mesh06.position.set(4,3,6);
+    mesh06.rotation.set(11,0,0);
+    mesh06.castShadow = true;
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+// flor1.rotation.x +=0.01;
+//  flor2.rotation.y +=0.01;
+//   flor3.rotation.z +=0.01;
+    //🪄🪄 Animación -
+//mesh02.rotation.z +=0.01;
+//mesh03.rotation.z-=0.01;
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+ 
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+
+
+
+
+    
+
+
+</script>
+</body>
+</html>

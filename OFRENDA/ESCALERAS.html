@@ -1,0 +1,152 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>ESCALERAS</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xffffff);
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(10, 20, 160);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+
+    //OBJETOS
+var escalera = new THREE.Mesh(
+  new THREE.BoxGeometry(230, 240, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera.rotation.x = -Math.PI / 2;
+escalera.position.y = 0;
+escalera.receiveShadow = true;
+scene.add(escalera);
+
+var escalera01 = new THREE.Mesh(
+  new THREE.BoxGeometry(200, 210, 10),
+  new THREE.MeshLambertMaterial({ color: 0xFF2B00, roughness: 1 })
+);
+escalera01.rotation.x = -Math.PI / 2;
+escalera01.position.y = 10;
+escalera01.position.z = -15;
+escalera01.receiveShadow = true;
+scene.add(escalera01);
+
+var escalera02 = new THREE.Mesh(
+  new THREE.BoxGeometry(170, 180, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera02.rotation.x = -Math.PI / 2;
+escalera02.position.y = 20;
+escalera02.position.z = -30;
+escalera02.receiveShadow = true;
+scene.add(escalera02);
+
+var escalera03 = new THREE.Mesh(
+  new THREE.BoxGeometry(140, 150, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera03.rotation.x = -Math.PI / 2;
+escalera03.position.y = 30;
+escalera03.position.z = -45;
+escalera03.receiveShadow = true;
+scene.add(escalera03);
+
+var escalera04 = new THREE.Mesh(
+  new THREE.BoxGeometry(110, 120, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera04.rotation.x = -Math.PI / 2;
+escalera04.position.y = 40;
+escalera04.position.z = -60;
+escalera04.receiveShadow = true;
+scene.add(escalera04);
+
+var escalera05 = new THREE.Mesh(
+  new THREE.BoxGeometry(80, 90, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera05.rotation.x = -Math.PI / 2;
+escalera05.position.y = 50;
+escalera05.position.z = -75;
+escalera05.receiveShadow = true;
+scene.add(escalera05);
+
+var escalera06 = new THREE.Mesh(
+  new THREE.BoxGeometry(50, 60, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera06.rotation.x = -Math.PI / 2;
+escalera06.position.y = 60;
+escalera06.position.z = -90;
+escalera06.receiveShadow = true;
+scene.add(escalera06);
+
+var escalera07 = new THREE.Mesh(
+  new THREE.BoxGeometry(30, 30, 10),
+  new THREE.MeshLambertMaterial({ color: 0x3a3a3a, roughness: 1 })
+);
+escalera07.rotation.x = -Math.PI / 2;
+escalera07.position.y = 70;
+escalera07.position.z = -105;
+escalera07.receiveShadow = true;
+scene.add(escalera07);
+
+
+    //🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+
+    //🪄🪄 Animación - 
+
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

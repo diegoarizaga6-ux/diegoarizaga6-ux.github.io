@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>FLOR</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xEDADD4);
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, 4, 10);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+// Espacio para colocar los objetos
+  var FLOR = new THREE.Group();
+  var grupoFlor = new THREE.Group();
+
+  // Pétalos (8 posiciones alrededor del centro)
+  var petalo1 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo1.position.set(1, 0, 0);
+  grupoFlor.add(petalo1);
+
+  var petalo2 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo2.position.set(Math.cos(Math.PI / 4), Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo2);
+
+  var petalo3 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo3.position.set(0, 1, 0);
+  grupoFlor.add(petalo3);
+
+  var petalo4 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo4.position.set(-Math.cos(Math.PI / 4), Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo4);
+
+  var petalo5 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo5.position.set(-1, 0, 0);
+  grupoFlor.add(petalo5);
+
+  var petalo6 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo6.position.set(-Math.cos(Math.PI / 4), -Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo6);
+
+  var petalo7 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo7.position.set(0, -1, 0);
+  grupoFlor.add(petalo7);
+
+  var petalo8 = new THREE.Mesh(
+    new THREE.SphereGeometry(0.7, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFF8C00 })
+  );
+  petalo8.position.set(Math.cos(Math.PI / 4), -Math.sin(Math.PI / 4), 0);
+  grupoFlor.add(petalo8);
+
+  // Centro
+  var centro = new THREE.Mesh(
+    new THREE.SphereGeometry(0.5, 16, 16),
+    new THREE.MeshLambertMaterial({ color: 0xFFD54F })
+  );
+  grupoFlor.add(centro);
+
+  // Posición de la flor
+  grupoFlor.position.set(-8, 16, 1);
+
+  // Agregar al grupo principal
+  FLOR.add(grupoFlor);
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>

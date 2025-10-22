@@ -1,0 +1,1066 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>ESCENARIO</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+    import {TextGeometry} from "./js/TextGeometry.js";
+    import {FontLoader} from "./js/FontLoader.js";
+    import { RoundedBoxGeometry } from './js/RoundedBoxGeometry.js';
+    import VELITA from "./objetos/VELITA.js"
+    import VELITA1 from "./objetos/VELITA1.js"
+    import MARCO from "./objetos/MARCO.js"
+    import FLORES from "./objetos/FLORES.js"
+    import ESCENA from "./objetos/ESCALERAS.js"
+    import NARANJA from "./objetos/naranja 1.js"
+    import UVAS from "./objetos/uvas.js"
+    import BLUE from "./objetos/BLUE.js"
+    import YELLOW from "./objetos/YELLOW.js"
+    import RED from "./objetos/RED.js"
+    import PINK from "./objetos/PINK.js"
+    import URIEL from "./objetos/URIEL.js"
+    import OSCAR from "./objetos/OSCAR.js"
+    import JOEL from "./objetos/JOEL.js"
+    import DIEGO from "./objetos/DIEGO.js"
+    import BOTELLA from "./objetos/BOTELLA.js"
+    import ATOLE from "./objetos/ATOLE.js"
+    import BASE from "./objetos/BASE.js"
+    import CAÑA from "./objetos/CAÑA.js"
+    import CALAVERA from "./objetos/CALAVERA.js"
+    import PAN from "./objetos/PAN.js"
+    import PISO from "./objetos/PISO.js"
+    import PISON from "./objetos/PISON.js"
+    import COMIDA from "./objetos/COMIDA.js"
+    import CIGARROS from "./objetos/CIGARROS.js"
+    import SOMBRERO from "./objetos/SOMBRERO.js"
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000);
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,2000
+      );
+    scene.add(camera);
+
+    //Settings de la cámara
+    camera.position.set(0, -6, 90);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+var luzAmbiente = new THREE.AmbientLight(0xffffff, 0.6);
+//scene.add(luzAmbiente);
+
+    var loader = new THREE.TextureLoader();
+    var bgTexture = loader.load('./assets/CIELO.png');
+    scene.background = bgTexture;
+// Espacio para colocar los objetos
+
+var escenario01 = VELITA({x:0, y:0, z:0});
+scene.add(escenario01);
+
+escenario01.position.set(-6.5,-1.3,4);
+escenario01.scale.set(.8,.8,.8);
+
+var escenario03 = MARCO({x:0, y:0, z:0});
+scene.add(escenario03);
+
+escenario03.position.set(0,0,-.1);
+escenario03.scale.set(.5,.5,.5);
+
+var escenario04 = VELITA({x:0, y:0, z:0});
+scene.add(escenario04);
+
+escenario04.position.set(6.5,-1.3,4);
+escenario04.scale.set(.8,.8,.8);
+
+var escenario05 = FLORES({x:0, y:0, z:0});
+scene.add(escenario05);
+
+escenario05.position.set(6.5,-.5,-5);
+escenario05.scale.set(.5,.5,.5);
+escenario05.rotation.set(1.57,0,0);
+
+var escenario06 = FLORES({x:0, y:0, z:0});
+scene.add(escenario06);
+
+escenario06.position.set(4.5,-.5,-5);
+escenario06.scale.set(.5,.5,.5);
+escenario06.rotation.set(1.57,0,0);
+
+var escenario07 = FLORES({x:0, y:0, z:0});
+scene.add(escenario07);
+
+escenario07.position.set(2.5,-.5,-5);
+escenario07.scale.set(.5,.5,.5);
+escenario07.rotation.set(1.57,0,0);
+
+var escenario08 = ESCENA({x:0, y:0, z:0});
+scene.add(escenario08);
+
+escenario08.position.set(0,-24.25,31);
+escenario08.scale.set(.3,.3,.3);
+
+var escenario09 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario09);
+
+escenario09.position.set(-3.5,-2.2,3);
+escenario09.scale.set(.2,.2,.2);
+
+var escenario10 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario10);
+
+escenario10.position.set(-5,-2.2,3);
+escenario10.scale.set(.2,.2,.2);
+
+var escenario11 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario11);
+
+escenario11.position.set(-4.3,-1,3);
+escenario11.scale.set(.2,.2,.2);
+
+var escenario12 = UVAS({x:0, y:0, z:0});
+scene.add(escenario12);
+
+escenario12.position.set(4.3,0.8,2);
+escenario12.scale.set(.2,.2,.2);
+escenario12.rotation.set(2.6,2,0);
+
+var escenario13 = BLUE({x:0, y:0, z:0});
+scene.add(escenario13);
+
+escenario13.position.set(-5,-3,4.9);
+escenario13.scale.set(.04,.04,.04);
+
+var escenario14 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario14);
+
+escenario14.position.set(0,-3,4.9);
+escenario14.scale.set(.04,.04,.04);
+
+var escenario15 = RED({x:0, y:0, z:0});
+scene.add(escenario15);
+
+escenario15.position.set(5,-3,4.9);
+escenario15.scale.set(.04,.04,.04);
+
+var escenario16 = PINK({x:0, y:0, z:0});
+scene.add(escenario16);
+
+escenario16.position.set(-7.58,-3,2.2);
+escenario16.scale.set(.04,.04,.04);
+escenario16.rotation.set(0,1.57,0);
+
+var escenario17 = URIEL({x:0, y:0, z:0});
+scene.add(escenario17);
+
+escenario17.position.set(-7.5,-3,-2.5);
+escenario17.scale.set(.04,.04,.04);
+escenario17.rotation.set(0,-1.57,0);
+
+var escenario18 = OSCAR({x:0, y:0, z:0});
+scene.add(escenario18);
+
+escenario18.position.set(7.50,-3,2.2);
+escenario18.scale.set(.04,.04,.04);
+escenario18.rotation.set(0,1.57,0);
+
+var escenario19 = JOEL({x:0, y:0, z:0});
+scene.add(escenario19);
+
+escenario19.position.set(7.5,-3,-2.5);
+escenario19.scale.set(.04,.04,.04);
+escenario19.rotation.set(0,1.57,0);
+
+var escenario20 = VELITA({x:0, y:0, z:0});
+scene.add(escenario20);
+
+escenario20.position.set(-6.5,-1.3,-4);
+escenario20.scale.set(.8,.8,.8);
+
+var escenario21 = VELITA({x:0, y:0, z:0});
+scene.add(escenario21);
+
+escenario21.position.set(6.5,-1.3,-4);
+escenario21.scale.set(.8,.8,.8);
+
+var escenario22 = BOTELLA({x:0, y:0, z:0});
+scene.add(escenario22);
+
+escenario22.position.set(0,-4.65,10);
+escenario22.scale.set(.3,.3,.3);
+
+var escenario23 = VELITA({x:0, y:0, z:0});
+scene.add(escenario23);
+
+escenario23.position.set(6.5,-4.65,12);
+escenario23.scale.set(.8,.8,.8);
+
+var escenario24 = VELITA({x:0, y:0, z:0});
+scene.add(escenario24);
+
+escenario24.position.set(-6.5,-4.65,12);
+escenario24.scale.set(.8,.8,.8);
+
+var escenario25 = VELITA({x:0, y:0, z:0});
+scene.add(escenario25);
+
+escenario25.position.set(0,-4.65,12);
+escenario25.scale.set(.8,.8,.8);
+
+var escenario26 = VELITA({x:0, y:0, z:0});
+scene.add(escenario26);
+
+escenario26.position.set(-6.5,-4.65,8);
+escenario26.scale.set(.8,.8,.8);
+
+var escenario27 = VELITA({x:0, y:0, z:0});
+scene.add(escenario27);
+
+escenario27.position.set(6.5,-4.65,8);
+escenario27.scale.set(.8,.8,.8);
+
+var escenario23 = ATOLE({x:0, y:0, z:0});
+scene.add(escenario23);
+
+escenario23.position.set(2,-4.65,10);
+escenario23.scale.set(.3,.3,.3);
+escenario23.rotation.set(0,1.57,0);
+
+var escenario28 = BASE({x:0, y:0, z:0});
+scene.add(escenario28);
+
+escenario28.position.set(0,-3,8.9);
+escenario28.scale.set(.5,.5, .49);
+
+var escenario29 = BASE({x:0, y:0, z:0});
+scene.add(escenario29);
+
+escenario29.position.set(0,-6,8.9);
+escenario29.scale.set(.8,.5,1.4);
+
+var escenario30 = BASE({x:0, y:0, z:0});
+scene.add(escenario30);
+
+escenario30.position.set(0,-9,13.45);
+escenario30.scale.set(1.1,.5,1.85);
+
+var escenario31 = VELITA({x:0, y:0, z:0});
+scene.add(escenario31);
+ 
+escenario31.position.set(11,-7.5,21);
+escenario31.scale.set(.8,.8,.8);
+
+var escenario32 = VELITA({x:0, y:0, z:0});
+scene.add(escenario32);
+ 
+escenario32.position.set(0,-7.5,21);
+escenario32.scale.set(.8,.8,.8);
+
+var escenario33 = VELITA({x:0, y:0, z:0});
+scene.add(escenario33);
+ 
+escenario33.position.set(-11,-7.5,21);
+escenario33.scale.set(.8,.8,.8);
+
+var escenario34 = VELITA({x:0, y:0, z:0});
+scene.add(escenario34);
+ 
+escenario34.position.set(-11,-7.5,-4);
+escenario34.scale.set(.8,.8,.8);
+
+var escenario35 = VELITA({x:0, y:0, z:0});
+scene.add(escenario35);
+ 
+escenario35.position.set(11,-7.5,-4);
+escenario35.scale.set(.8,.8,.8);
+
+var escenario36 = VELITA({x:0, y:0, z:0});
+scene.add(escenario36);
+ 
+escenario36.position.set(11,-7.5,8);
+escenario36.scale.set(.8,.8,.8);
+
+var escenario37 = VELITA({x:0, y:0, z:0});
+scene.add(escenario37);
+ 
+escenario37.position.set(-11,-7.5,8);
+escenario37.scale.set(.8,.8,.8);
+
+var escenario38 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario38);
+
+escenario38.position.set(-9.5,-8.2,-1);
+escenario38.scale.set(.2,.2,.2);
+
+var escenario39 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario39);
+
+escenario39.position.set(-9.5,-8.2,.5);
+escenario39.scale.set(.2,.2,.2);
+
+var escenario40 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario40);
+
+escenario40.position.set(-9.5,-7.05,-.25);
+escenario40.scale.set(.2,.2,.2);
+
+var escenario41 = ATOLE({x:0, y:0, z:0});
+scene.add(escenario41);
+
+escenario41.position.set(-10.75,-7.7,3);
+escenario41.scale.set(.3,.3,.3);
+
+var escenario42 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario42);
+
+escenario42.position.set(9.5,-8.2,-1);
+escenario42.scale.set(.2,.2,.2);
+
+var escenario43 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario43);
+
+escenario43.position.set(9.5,-8.2,.5);
+escenario43.scale.set(.2,.2,.2);
+
+var escenario44 = NARANJA({x:0, y:0, z:0});
+scene.add(escenario44);
+
+escenario44.position.set(9.5,-7.05,-.25);
+escenario44.scale.set(.2,.2,.2);
+
+var escenario45 = ATOLE({x:0, y:0, z:0});
+scene.add(escenario45);
+
+escenario45.position.set(8.5,-7.7,3);
+escenario45.scale.set(.3,.3,.3);
+
+var escenario46 = FLORES({x:0, y:0, z:0});
+scene.add(escenario46);
+
+escenario46.position.set(-5.25,-6.5,-12);
+escenario46.scale.set(.5,.5,.5);
+escenario46.rotation.set(1.57,0,0);
+
+var escenario47 = FLORES({x:0, y:0, z:0});
+scene.add(escenario47);
+
+escenario47.position.set(-5.25,-6.5,0);
+escenario47.scale.set(.5,.5,.5);
+escenario47.rotation.set(1.57,0,0);
+
+var escenario48 = FLORES({x:0, y:0, z:0});
+scene.add(escenario48);
+
+escenario48.position.set(13.25,-6.5,-12);
+escenario48.scale.set(.5,.5,.5);
+escenario48.rotation.set(1.57,0,0);
+
+var escenario49 = FLORES({x:0, y:0, z:0});
+scene.add(escenario49);
+
+escenario49.position.set(13.25,-6.5,0);
+escenario49.scale.set(.5,.5,.5);
+escenario49.rotation.set(1.57,0,0);
+
+var escenario50 = CAÑA({x:0, y:0, z:0});
+scene.add(escenario50);
+
+escenario50.position.set(12.25,-6.85, 11);
+escenario50.scale.set(.2,.2,.2);
+escenario50.rotation.set(0, 0,1.57);
+
+var escenario51 = CAÑA({x:0, y:0, z:0});
+scene.add(escenario51);
+
+escenario51.position.set(12.25,-6.85, 12);
+escenario51.scale.set(.2,.2,.2);
+escenario51.rotation.set(0, 0, 1.57);
+
+var escenario52 = CAÑA({x:0, y:0, z:0});
+scene.add(escenario52);
+
+escenario52.position.set(11,-6.25, 9.5);
+escenario52.scale.set(.2,.2,.2);
+escenario52.rotation.set(1.57, 0, .5235);
+
+var escenario53 = CAÑA({x:0, y:0, z:0});
+scene.add(escenario53);
+
+escenario53.position.set(-7,-6.85, 11);
+escenario53.scale.set(.2,.2,.2);
+escenario53.rotation.set(0, 0,1.57);
+
+var escenario54 = CAÑA({x:0, y:0, z:0});
+scene.add(escenario54);
+
+escenario54.position.set(-7,-6.85, 12);
+escenario54.scale.set(.2,.2,.2);
+escenario54.rotation.set(0, 0, 1.57);
+
+var escenario55 = CAÑA({x:0, y:0, z:0});
+scene.add(escenario55);
+
+escenario55.position.set(-8,-6.25, 9.5);
+escenario55.scale.set(.2,.2,.2);
+escenario55.rotation.set(1.57, 0, .5235);
+
+var escenario56 = RED({x:0, y:0, z:0});
+scene.add(escenario56);
+
+escenario56.position.set(-7.6, -6, 6.75);
+escenario56.scale.set(.04,.04,.04);
+escenario56.rotation.set(0, 1.57, 0);
+
+var escenario57 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario57);
+
+escenario57.position.set(-7.6, -6, 11.5);
+escenario57.scale.set(.04,.04,.04);
+escenario57.rotation.set(0, 1.57, 0);
+
+var escenario58 = BLUE({x:0, y:0, z:0});
+scene.add(escenario58);
+
+escenario58.position.set(-5, -6,13.8);
+escenario58.scale.set(.04,.04,.04);
+
+var escenario59 = PINK({x:0, y:0, z:0});
+scene.add(escenario59);
+
+escenario59.position.set(0, -6,13.8);
+escenario59.scale.set(.04,.04,.04);
+
+var escenario60 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(5, -6,13.8);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario61 = BLUE({x:0, y:0, z:0});
+scene.add(escenario61);
+
+escenario61.position.set(7.5, -6, 11.5);
+escenario61.scale.set(.04,.04,.04);
+escenario61.rotation.set(0, 1.57, 0);
+
+var escenario62 = PINK({x:0, y:0, z:0});
+scene.add(escenario62);
+
+escenario62.position.set(7.5, -6, 6.75);
+escenario62.scale.set(.04,.04,.04);
+escenario62.rotation.set(0, 1.57, 0);
+
+var escenario63 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario63);
+
+escenario63.position.set(1.5,-7.5, 20);
+escenario63.scale.set(0.4, 0.4, 0.4);
+escenario63.rotation.set(0, 3.14, 0);
+
+var escenario64 = PAN({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(-3.5,-4.65,9);
+escenario64.scale.set(0.5, 0.5, 0.5);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(-5,-7.5, 20);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, 2.5, 0);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(7.5,-7.5, 18.35);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, -2.5, 0);
+
+var escenario65 = PISO({x:0, y:0, z:0});
+scene.add(escenario65);
+
+escenario65.position.set(0,-20,70);
+escenario65.scale.set(3.4, 2, 7);
+escenario65.rotation.set(-1.57, 0, 0);
+
+var escenario66 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario66);
+ 
+escenario66.position.set(11,-13,60);
+escenario66.scale.set(.8,.8,.8);
+
+var escenario67 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario67);
+ 
+escenario67.position.set(11,-13,40);
+escenario67.scale.set(.8,.8,.8);
+
+var escenario68 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario68);
+ 
+escenario68.position.set(11,-13,50);
+escenario68.scale.set(.8,.8,.8);
+
+var escenario69 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario69);
+ 
+escenario69.position.set(11,-13,70);
+escenario69.scale.set(.8,.8,.8);
+
+var escenario70 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario70);
+ 
+escenario70.position.set(11,-13,80);
+escenario70.scale.set(.8,.8,.8);
+
+var escenario71 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario71);
+ 
+escenario71.position.set(-11,-13,60);
+escenario71.scale.set(.8,.8,.8);
+
+var escenario72 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario72);
+ 
+escenario72.position.set(-11,-13,40);
+escenario72.scale.set(.8,.8,.8);
+
+var escenario73 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario73);
+ 
+escenario73.position.set(-11,-13,50);
+escenario73.scale.set(.8,.8,.8);
+
+var escenario74 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario74);
+ 
+escenario74.position.set(-11,-13,70);
+escenario74.scale.set(.8,.8,.8);
+
+var escenario75 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario75);
+ 
+escenario75.position.set(-11,-13,80);
+escenario75.scale.set(.8,.8,.8);
+
+var escenario73 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario73);
+ 
+escenario73.position.set(1,-15.35,34);
+escenario73.scale.set(.8,.8,.8);
+
+var escenario74 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario74);
+ 
+escenario74.position.set(-.5,-15.35,40);
+escenario74.scale.set(.8,.8,.8);
+
+var escenario75 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario75);
+ 
+escenario75.position.set(-1.5,-15.35,46);
+escenario75.scale.set(.8,.8,.8);
+
+
+var escenario76 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario76);
+ 
+escenario76.position.set(-1.5,-15.35,52);
+escenario76.scale.set(.8,.8,.8);
+
+var escenario77 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario77);
+ 
+escenario77.position.set(0,-15.35,58);
+escenario77.scale.set(.8,.8,.8);
+
+var escenario78 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario78);
+ 
+escenario78.position.set(1.5,-15.35,64);
+escenario78.scale.set(.8,.8,.8);
+
+var escenario79 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario79);
+ 
+escenario79.position.set(1.5,-15.35,70);
+escenario79.scale.set(.8,.8,.8);
+
+var escenario80 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario80);
+ 
+escenario80.position.set(.5,-15.35,76);
+escenario80.scale.set(.8,.8,.8);
+
+var escenario81 = VELITA1({x:0, y:0, z:0});
+scene.add(escenario81);
+ 
+escenario81.position.set(.5,-15.35,82);
+escenario81.scale.set(.8,.8,.8);
+
+var escenario82 = PISON({x:0, y:0, z:0});
+scene.add(escenario82);
+
+escenario82.position.set(0,-21,53);
+escenario82.scale.set(100, 40, 7);
+escenario82.rotation.set(-1.57, 0, 0);
+
+var escenario83 = COMIDA({x:0, y:0, z:0});
+scene.add(escenario83);
+
+escenario83.position.set(-11,-9, 16);
+escenario83.scale.set(0.4, 0.4, 0.4);
+
+var escenario84 = COMIDA({x:0, y:0, z:0});
+scene.add(escenario84);
+
+escenario84.position.set(7,-9, 16);
+escenario84.scale.set(0.4, 0.4, 0.4);
+
+var escenario85 = PINK({x:0, y:0, z:0});
+scene.add(escenario85);
+
+escenario85.position.set(-12.05,-9,2.2);
+escenario85.scale.set(.04,.04,.04);
+escenario85.rotation.set(0,1.57,0);
+
+var escenario86 = URIEL({x:0, y:0, z:0});
+scene.add(escenario86);
+
+escenario86.position.set(-12,-9,-2.5);
+escenario86.scale.set(.04,.04,.04);
+escenario86.rotation.set(0,-1.57,0);
+
+var escenario87 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario87);
+
+escenario87.position.set(-12.05, -9, 6.75);
+escenario87.scale.set(.04,.04,.04);
+escenario87.rotation.set(0, 1.57, 0);
+
+var escenario88 = RED({x:0, y:0, z:0});
+scene.add(escenario88);
+
+escenario88.position.set(-12.05, -9, 11.5);
+escenario88.scale.set(.04,.04,.04);
+escenario88.rotation.set(0, 1.57, 0);
+
+var escenario89 = BLUE({x:0, y:0, z:0});
+scene.add(escenario89);
+
+escenario89.position.set(-12.05, -9, 16.25);
+escenario89.scale.set(.04,.04,.04);
+escenario89.rotation.set(0, -1.57, 0);
+
+var escenario90 = PINK({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(-12.05, -9, 21);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, -1.57, 0);
+
+var escenario85 = PINK({x:0, y:0, z:0});
+scene.add(escenario85);
+
+escenario85.position.set(12.05,-9,2.2);
+escenario85.scale.set(.04,.04,.04);
+escenario85.rotation.set(0,-1.57,0);
+
+var escenario86 = URIEL({x:0, y:0, z:0});
+scene.add(escenario86);
+
+escenario86.position.set(12.05,-9,-2.5);
+escenario86.scale.set(.04,.04,.04);
+escenario86.rotation.set(0,1.57,0);
+
+var escenario87 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario87);
+
+escenario87.position.set(12.05, -9, 6.75);
+escenario87.scale.set(.04,.04,.04);
+escenario87.rotation.set(0, -1.57, 0);
+
+var escenario88 = RED({x:0, y:0, z:0});
+scene.add(escenario88);
+
+escenario88.position.set(12.05, -9, 11.5);
+escenario88.scale.set(.04,.04,.04);
+escenario88.rotation.set(0, -1.57, 0);
+
+var escenario89 = BLUE({x:0, y:0, z:0});
+scene.add(escenario89);
+
+escenario89.position.set(12.05, -9, 16.25);
+escenario89.scale.set(.04,.04,.04);
+escenario89.rotation.set(0, 1.57, 0);
+
+var escenario90 = PINK({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(12.05, -9, 21);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, 1.57, 0);
+
+var escenario85 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario85);
+
+escenario85.position.set(-16.6,-12,2.2);
+escenario85.scale.set(.04,.04,.04);
+escenario85.rotation.set(0,-1.57,0);
+
+var escenario86 = RED({x:0, y:0, z:0});
+scene.add(escenario86);
+
+escenario86.position.set(-16.6,-12,-2.5);
+escenario86.scale.set(.04,.04,.04);
+escenario86.rotation.set(0,-1.57,0);
+
+var escenario87 = BLUE({x:0, y:0, z:0});
+scene.add(escenario87);
+
+escenario87.position.set(-16.6, -12, 6.75);
+escenario87.scale.set(.04,.04,.04);
+escenario87.rotation.set(0, -1.57, 0);
+
+var escenario88 = PINK({x:0, y:0, z:0});
+scene.add(escenario88);
+
+escenario88.position.set(-16.6, -12, 11.5);
+escenario88.scale.set(.04,.04,.04);
+escenario88.rotation.set(0, -1.57, 0);
+
+var escenario89 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario89);
+
+escenario89.position.set(-16.6, -12, 16.25);
+escenario89.scale.set(.04,.04,.04);
+escenario89.rotation.set(0, -1.57, 0);
+
+var escenario90 = BLUE({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(-16.6, -12, 21);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, -1.57, 0);
+
+var escenario85 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario85);
+
+escenario85.position.set(16.6,-12,2.2);
+escenario85.scale.set(.04,.04,.04);
+escenario85.rotation.set(0,-1.57,0);
+
+var escenario86 = RED({x:0, y:0, z:0});
+scene.add(escenario86);
+
+escenario86.position.set(16.6,-12,-2.5);
+escenario86.scale.set(.04,.04,.04);
+escenario86.rotation.set(0,1.57,0);
+
+var escenario87 = BLUE({x:0, y:0, z:0});
+scene.add(escenario87);
+
+escenario87.position.set(16.6, -12, 6.75);
+escenario87.scale.set(.04,.04,.04);
+escenario87.rotation.set(0, -1.57, 0);
+
+var escenario88 = PINK({x:0, y:0, z:0});
+scene.add(escenario88);
+
+escenario88.position.set(16.6, -12, 11.5);
+escenario88.scale.set(.04,.04,.04);
+escenario88.rotation.set(0, -1.57, 0);
+
+var escenario89 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario89);
+
+escenario89.position.set(16.6, -12, 16.25);
+escenario89.scale.set(.04,.04,.04);
+escenario89.rotation.set(0, 1.57, 0);
+
+var escenario90 = BLUE({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(16.6, -12, 21);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, 1.57, 0);
+
+var escenario90 = RED({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(16.6, -12, 25.75);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, 1.57, 0);
+
+var escenario90 = PINK({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(16.6, -12, 30.5);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, 1.57, 0);
+
+var escenario90 = RED({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(-16.6, -12, 25.75);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, 1.57, 0);
+
+var escenario90 = PINK({x:0, y:0, z:0});
+scene.add(escenario90);
+
+escenario90.position.set(-16.6, -12, 30.5);
+escenario90.scale.set(.04,.04,.04);
+escenario90.rotation.set(0, 1.57, 0);
+
+var escenario58 = BLUE({x:0, y:0, z:0});
+scene.add(escenario58);
+
+escenario58.position.set(-5, -12,32);
+escenario58.scale.set(.04,.04,.04);
+
+var escenario59 = PINK({x:0, y:0, z:0});
+scene.add(escenario59);
+
+escenario59.position.set(0, -12,32);
+escenario59.scale.set(.04,.04,.04);
+
+var escenario60 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(5, -12,32);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario60 = DIEGO({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(10, -12,32);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario60 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(-10, -12,32);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario60 = RED({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(-14.5, -12,32);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario60 = URIEL({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(14.5, -12,32);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario58 = PINK({x:0, y:0, z:0});
+scene.add(escenario58);
+
+escenario58.position.set(-5, -9,22.9);
+escenario58.scale.set(.04,.04,.04);
+
+var escenario59 = YELLOW({x:0, y:0, z:0});
+scene.add(escenario59);
+
+escenario59.position.set(0, -9,22.9);
+escenario59.scale.set(.04,.04,.04);
+
+var escenario60 = BLUE({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(5, -9,22.9);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario60 = JOEL({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(-10, -9,22.9);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario60 = OSCAR({x:0, y:0, z:0});
+scene.add(escenario60);
+
+escenario60.position.set(10, -9,22.9);
+escenario60.scale.set(.04,.04,.04);
+
+var escenario91 = CIGARROS({x:0, y:0, z:0});
+scene.add(escenario91);
+
+escenario91.position.set(3,-11.3,28);
+escenario91.scale.set(.2,.2,.2);
+
+var escenario91 = SOMBRERO({x:0, y:0, z:0});
+scene.add(escenario91);
+
+escenario91.position.set(6,-11.3,28);
+escenario91.scale.set(.15,.15,.15);
+
+var escenario91 = UVAS({x:0, y:0, z:0});
+scene.add(escenario91);
+
+escenario91.position.set(9,-11.3,28);
+escenario91.scale.set(.15,.15,.15);
+
+var escenario92 = COMIDA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(-8,-11.6,26);
+escenario92.scale.set(.4,.4,.4);
+
+var escenario93 = ATOLE({x:0, y:0, z:0});
+scene.add(escenario93);
+
+escenario93.position.set(-11,-11,28);
+escenario93.scale.set(.3,.3,.3);
+escenario93.rotation.set(0,1.57,0);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(-15,-10.4,30);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(-15,-10.4,20);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(-15,-10.4,10);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(-15,-10.4,0);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(1,-10.4,30);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(15,-10.4,30);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(15,-10.4,20);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(15,-10.4,10);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = VELITA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(15,-10.4,0);
+escenario92.scale.set(.8,.8,.8);
+
+var escenario92 = BOTELLA({x:0, y:0, z:0});
+scene.add(escenario92);
+
+escenario92.position.set(-2,-10.4,27);
+escenario92.scale.set(.3,.3,.3);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(-15,-10.4, 27);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, 2.5, 0);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(-15,-10.4, 18);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, 2.5, 0);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(-15,-10.4, 8);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, 2.5, 0);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(17,-10.4, 26);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, -2.5, 0);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(17,-10.4, 17);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, -2.5, 0);
+
+var escenario64 = CALAVERA({x:0, y:0, z:0});
+scene.add(escenario64);
+
+escenario64.position.set(17,-10.4, 7);
+escenario64.scale.set(0.4, 0.4, 0.4);
+escenario64.rotation.set(0, -2.5, 0);
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>
